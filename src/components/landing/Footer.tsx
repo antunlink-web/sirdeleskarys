@@ -13,7 +13,7 @@ export function Footer() {
             <img 
               src={heartWarriorLogo} 
               alt={language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'} 
-              className="h-12 w-auto brightness-0 invert"
+              className="h-16 w-auto brightness-0 invert"
             />
 
             {/* Tagline */}
