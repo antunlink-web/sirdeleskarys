@@ -25,7 +25,7 @@ export function Header() {
             <img 
               src={heartWarriorLogo} 
               alt={language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'} 
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </a>
 
