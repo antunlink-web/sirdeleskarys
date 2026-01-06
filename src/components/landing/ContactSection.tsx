@@ -51,9 +51,9 @@ export function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: t('contact.emailLabel'), value: 'info@sirdeleskarys.lt' },
-    { icon: Phone, label: t('contact.phoneLabel'), value: '+370 630 03280' },
-    { icon: MapPin, label: '', value: t('contact.address') },
+    { icon: Mail, label: t('contact.emailLabel'), value: 'info@sirdeleskarys.lt', href: 'mailto:info@sirdeleskarys.lt' },
+    { icon: Phone, label: t('contact.phoneLabel'), value: '+370 630 03280', href: 'tel:+37063003280' },
+    { icon: MapPin, label: '', value: t('contact.address'), href: undefined },
   ];
 
   return (
@@ -150,9 +150,18 @@ export function ContactSection() {
                           {info.label}
                         </p>
                       )}
-                      <p className="text-lg font-medium text-foreground">
-                        {info.value}
-                      </p>
+                      {info.href ? (
+                        <a 
+                          href={info.href} 
+                          className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-lg font-medium text-foreground">
+                          {info.value}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
