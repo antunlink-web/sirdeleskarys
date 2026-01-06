@@ -1,5 +1,5 @@
-import { Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import heartWarriorLogo from '@/assets/heart-warrior-logo.png';
 
 export function Footer() {
   const { language, t } = useLanguage();
@@ -10,12 +10,11 @@ export function Footer() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <Heart className="h-6 w-6 fill-primary text-primary" />
-              <span className="font-display text-lg font-bold">
-                {language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'}
-              </span>
-            </div>
+            <img 
+              src={heartWarriorLogo} 
+              alt={language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'} 
+              className="h-12 w-auto brightness-0 invert"
+            />
 
             {/* Tagline */}
             <p className="text-background/70 text-center">

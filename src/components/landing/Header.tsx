@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import heartWarriorLogo from '@/assets/heart-warrior-logo.png';
 
 export function Header() {
   const { language, setLanguage, t } = useLanguage();
@@ -21,12 +22,11 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="relative">
-              <Heart className="h-8 w-8 text-primary fill-primary animate-pulse-soft" />
-            </div>
-            <span className="font-display text-xl font-bold text-foreground">
-              {language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'}
-            </span>
+            <img 
+              src={heartWarriorLogo} 
+              alt={language === 'lt' ? 'Širdelės Karys' : 'Heart Warrior'} 
+              className="h-10 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
