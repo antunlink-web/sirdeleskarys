@@ -51,7 +51,7 @@ export function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: t('contact.emailLabel'), value: 'info@sirdeles-karys.lt' },
+    { icon: Mail, label: t('contact.emailLabel'), value: 'info@sirdeleskarys.lt' },
     { icon: Phone, label: t('contact.phoneLabel'), value: '+370 600 00000' },
     { icon: MapPin, label: '', value: t('contact.address') },
   ];
