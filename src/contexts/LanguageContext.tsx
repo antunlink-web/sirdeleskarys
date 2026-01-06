@@ -90,7 +90,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.email': 'El. paštas',
     'contact.message': 'Žinutė',
     'contact.send': 'Siųsti žinutę',
-    'contact.address': 'Vilnius, Lietuva',
+    'contact.address': 'Pamėnkalnio g. 25, Vilnius',
     'contact.emailLabel': 'El. paštas',
     'contact.phoneLabel': 'Telefonas',
 
@@ -180,7 +180,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.email': 'Email',
     'contact.message': 'Message',
     'contact.send': 'Send Message',
-    'contact.address': 'Vilnius, Lithuania',
+    'contact.address': 'Pamėnkalnio g. 25, Vilnius',
     'contact.emailLabel': 'Email',
     'contact.phoneLabel': 'Phone',
 
