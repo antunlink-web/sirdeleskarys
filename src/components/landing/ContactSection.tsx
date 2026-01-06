@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 
-const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'; // Replace with your Web3Forms access key
+const WEB3FORMS_ACCESS_KEY = '4987abd8-8745-47a4-a916-13348be49533';
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
