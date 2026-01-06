@@ -1,44 +1,32 @@
-import { useState } from 'react';
-import { Heart, Shield, CreditCard } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useEffect } from 'react';
+import { Heart, Building2, CreditCard } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/use-toast';
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'stripe-buy-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
+        'buy-button-id': string;
+        'publishable-key': string;
+      }, HTMLElement>;
+    }
+  }
+}
 
 export function DonationSection() {
-  const { t } = useLanguage();
-  const { toast } = useToast();
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(15);
-  const [customAmount, setCustomAmount] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { t, language } = useLanguage();
 
-  const amounts = [
-    { value: 15, label: t('donate.amount1'), desc: t('donate.amount1Desc') },
-    { value: 50, label: t('donate.amount2'), desc: t('donate.amount2Desc') },
-    { value: 100, label: t('donate.amount3'), desc: t('donate.amount3Desc') },
-  ];
+  useEffect(() => {
+    // Load Stripe Buy Button script
+    const script = document.createElement('script');
+    script.src = 'https://js.stripe.com/v3/buy-button.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleDonate = async () => {
-    const amount = selectedAmount || parseInt(customAmount);
-    if (!amount || amount < 1) {
-      toast({
-        title: "Invalid amount",
-        description: "Please select or enter a valid donation amount.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsProcessing(true);
-    
-    // TODO: Integrate with Stripe when Cloud is enabled
-    toast({
-      title: "Thank you!",
-      description: "Stripe integration will be enabled soon. Thank you for your interest in supporting Heart Warrior!",
-    });
-    
-    setIsProcessing(false);
-  };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section id="donate" className="py-20 md:py-28 gradient-warm">
@@ -57,77 +45,60 @@ export function DonationSection() {
             </p>
           </div>
 
-          {/* Donation Card */}
-          <div className="bg-card rounded-2xl p-8 shadow-soft border border-border/50">
-            {/* Amount Options */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              {amounts.map((amount) => (
-                <button
-                  key={amount.value}
-                  onClick={() => {
-                    setSelectedAmount(amount.value);
-                    setCustomAmount('');
-                  }}
-                  className={`p-6 rounded-xl border-2 transition-all ${
-                    selectedAmount === amount.value
-                      ? 'border-primary bg-secondary'
-                      : 'border-border hover:border-primary/50'
-                  }`}
+          {/* Donation Options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Stripe Buy Button Card */}
+            <div className="bg-card rounded-2xl p-8 shadow-soft border border-border/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-foreground">
+                  {language === 'lt' ? 'Mokėti kortele' : 'Pay by Card'}
+                </h3>
+              </div>
+              
+              <div className="flex justify-center">
+                {/* @ts-ignore - Stripe custom element */}
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1R2x44KYtez9H1NSWA7x4IQg"
+                  publishable-key="pk_live_51OAWgYKYtez9H1NS5DHFAcm0B3RDkKuWTb1GPp64trO15mTz8HxggOUSKhCBonrx2hRBGjaLe2OkkffKyUqNkojs00ZHzFui07"
                 >
-                  <div className="font-display text-2xl font-bold text-foreground mb-1">
-                    {amount.label}
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {amount.desc}
-                  </p>
-                </button>
-              ))}
-            </div>
-
-            {/* Custom Amount */}
-            <div className="mb-8">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                {t('donate.custom')}
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
-                  €
-                </span>
-                <Input
-                  type="number"
-                  min="1"
-                  placeholder="0"
-                  value={customAmount}
-                  onChange={(e) => {
-                    setCustomAmount(e.target.value);
-                    setSelectedAmount(null);
-                  }}
-                  className="pl-8 text-lg h-12"
-                />
+                </stripe-buy-button>
               </div>
             </div>
 
-            {/* Donate Button */}
-            <Button 
-              onClick={handleDonate}
-              disabled={isProcessing}
-              size="lg"
-              className="w-full text-lg py-6 shadow-button hover:shadow-lg transition-all"
-            >
-              {isProcessing ? (
-                <span className="animate-pulse">Processing...</span>
-              ) : (
-                <>
-                  <CreditCard className="h-5 w-5 mr-2" />
-                  {t('donate.button')} €{selectedAmount || customAmount || '0'}
-                </>
-              )}
-            </Button>
-
-            {/* Security Badge */}
-            <div className="flex items-center justify-center gap-2 mt-6 text-sm text-muted-foreground">
-              <Shield className="h-4 w-4" />
-              {t('donate.secure')}
+            {/* Bank Transfer Card */}
+            <div className="bg-card rounded-2xl p-8 shadow-soft border border-border/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Building2 className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-foreground">
+                  {language === 'lt' ? 'Banko pavedimas' : 'Bank Transfer'}
+                </h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    {language === 'lt' ? 'Įmonės kodas' : 'Company Code'}
+                  </p>
+                  <p className="font-mono text-foreground font-medium">306343770</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">IBAN</p>
+                  <p className="font-mono text-foreground font-medium text-sm md:text-base break-all">
+                    LT547300010182129291
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    {language === 'lt' ? 'Mokėjimo paskirtis' : 'Payment Purpose'}
+                  </p>
+                  <p className="font-mono text-foreground font-medium">Širdelės Karys</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
