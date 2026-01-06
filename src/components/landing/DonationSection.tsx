@@ -82,13 +82,19 @@ export function DonationSection() {
               <div className="space-y-4">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">
+                    {language === 'lt' ? 'Gavėjas' : 'Recipient'}
+                  </p>
+                  <p className="text-foreground font-medium">Gera valia, labdaros ir paramos fondas</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">
                     {language === 'lt' ? 'Įmonės kodas' : 'Company Code'}
                   </p>
-                  <p className="font-mono text-foreground font-medium">306343770</p>
+                  <p className="text-foreground font-medium">306343770</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">IBAN</p>
-                  <p className="font-mono text-foreground font-medium text-sm md:text-base break-all">
+                  <p className="text-foreground font-medium text-sm md:text-base break-all">
                     LT547300010182129291
                   </p>
                 </div>
@@ -96,7 +102,7 @@ export function DonationSection() {
                   <p className="text-sm text-muted-foreground mb-1">
                     {language === 'lt' ? 'Mokėjimo paskirtis' : 'Payment Purpose'}
                   </p>
-                  <p className="font-mono text-foreground font-medium">Širdelės Karys</p>
+                  <p className="text-foreground font-medium">Pagalba vaikams</p>
                 </div>
               </div>
             </div>
