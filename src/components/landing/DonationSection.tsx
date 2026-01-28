@@ -102,7 +102,7 @@ export function DonationSection() {
                   <p className="text-sm text-muted-foreground mb-1">
                     {language === 'lt' ? 'Mokėjimo paskirtis' : 'Payment Purpose'}
                   </p>
-                  <p className="text-foreground font-medium">Pagalba vaikams</p>
+                  <p className="text-foreground font-medium">Pagalba</p>
                 </div>
               </div>
             </div>
