@@ -4,7 +4,8 @@ import { AboutCHDSection } from '@/components/landing/AboutCHDSection';
 import { ProblemSection } from '@/components/landing/ProblemSection';
 import { SupportGapSection } from '@/components/landing/SupportGapSection';
 import { SolutionSection } from '@/components/landing/SolutionSection';
-rt { ContactSection } from '@/components/landing/ContactSection';
+import { DonationSection } from '@/components/landing/DonationSection';
+import { ContactSection } from '@/components/landing/ContactSection';
 import { Footer } from '@/components/landing/Footer';
 
 const Index = () => {
@@ -17,9 +18,10 @@ const Index = () => {
         <ProblemSection />
         <SupportGapSection />
         <SolutionSection />
-        <PartnershipSection />
         <DonationSection />
-        <ContactSection />Footer />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   );
 };
