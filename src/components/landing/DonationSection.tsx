@@ -93,10 +93,20 @@ export function DonationSection() {
                   <p className="text-foreground font-medium">306343770</p>
                 </div>
                 <div>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    {language === 'lt' ? 'Bankas' : 'Bank'}
+                  </p>
+                  <p className="text-foreground font-medium">Wise Europe SA</p>
+                </div>
+                <div>
                   <p className="text-sm text-muted-foreground mb-1">IBAN</p>
                   <p className="text-foreground font-medium text-sm md:text-base break-all">
-                    LT547300010182129291
+                    BE76905284238295
                   </p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Swift / BIC</p>
+                  <p className="text-foreground font-medium">TRWIBEB1XXX</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">
